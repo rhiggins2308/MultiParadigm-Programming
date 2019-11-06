@@ -1,29 +1,9 @@
-/* 
- ---------------------------------
- Build a simulation of a shop in C
- ---------------------------------
- Entities
-    Shop
-    Customer(s)
-    Product(s)
-    Stock
-
- Tasks
- ------
- 1. Model the Entities
- 2. Print Product Infpo
- 3. Add Item to Customers List
- 4. Read in Stock from a File
-*/
-
-
 // |----------------------------|
 // |---- 1. Import Packages ----|
 // |----------------------------|
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
 
 // |-----------------------------|
 // |----- 2. Model Entities -----|
@@ -56,7 +36,6 @@ struct Shop{
     int index;
 };
 
-
 // |-----------------------------|
 // |----- 3. Define Methods -----|
 // |-----------------------------|
@@ -84,9 +63,8 @@ void printCustomer(struct Customer c)
     }
 }
 
-struct Shop createAndStockShop(){
-    struct Shop shop = {200};
-    
+struct Shop createAndStockShop()
+{
     FILE * fp;
     char * line = NULL;
     size_t len = 0;
@@ -97,41 +75,27 @@ struct Shop createAndStockShop(){
         exit(EXIT_FAILURE);
     }
 
-    while ((read = getline(&line, &len, fp)) != -1){
-        // printf("Retrieved line of length %zu:\n", read);
-        // printf("%s IS A LINE", line);
+    getline(&line, &len, fp);
+    double cashInShop = atof(line);
+    struct Shop shop = {cashInShop};
 
+
+    while ((read = getline(&line, &len, fp)) != -1){
         char *n = strtok(line, ",");
         char *p = strtok(NULL, ",");
         char *q = strtok(NULL, ",");
 
+        int quantity = atoi(q);
+        double price = atof(p);
         char *name = malloc(sizeof(char) * 50);
         strcpy(name, n);
-        double price = atof(p);
-        //int quantity = atoi(q);
-        
-        struct Product product = {name, price};
-        struct ProductStock stockItem = {product, atoi(q)};
 
-        shop.stock[shop.index++] = stockItem;    
-  
-        printf("\nNAME OF PRODUCT: %s ;\nPRICE: €%.2f ;\nQUANTITY: %d\n", name, price, atoi(q));
+        struct Product product = {name, price};
+        struct ProductStock stockItem = {product, quantity};
+        shop.stock[shop.index++] = stockItem;
     }
 
     return shop;
-
-//     getline(&line, &len, fp);
-//     double shopCash = atof(line);
-
-
-//     while ((read = getline(&line, &len, fp)) != -1){
-//        // printf("%s IS A LINE", line);
-       
-
-
-
-//        
-//     }
 }
 
 void printShop(struct Shop s){
@@ -142,22 +106,6 @@ void printShop(struct Shop s){
         printf("Shop has %d of the above.\n", s.stock[i].quantity);
     }
 }
-
-
-
-// double findProductPrice(struct Shop s, char *n)
-// {
-//     for (int i = 0; i < s.index; i++)
-//     {
-//         struct Product product = s.stock[i].product;
-//         char *name = product.name;
-//         if (strcmp(name, n) == 0)
-//         {
-//             return product.price;
-//         }
-//     }
-//     return -1;
-// }
 
 int main(void)
 {
