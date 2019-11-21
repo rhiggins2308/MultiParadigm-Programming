@@ -423,41 +423,7 @@ int main(void)
             processGuestOrder(shop, cust);
         }
     } else { printf("\nYou have entered an invalid menu option. Please try again.\n"); }
-    
-/*    
-    // call print method for Customer details
-    // nothing returned
-    printCustomer(robbie);
 
-    
-
-    double price = findProductPrice(shop, "Coke Can");
-    printf("%.2f\n", price);
-
-    price = findProductPrice(shop, "Bread");
-    printf("%.2f\n", price);
-
-    price = findProductPrice(shop, "Spaghetti");
-    printf("%.2f\n", price);
-
-    price = findProductPrice(shop, "Tomato Sauce");
-    printf("%.2f\n", price);
-
-    price = findProductPrice(shop, "Bin Bags");
-    printf("%.2f\n", price);
-
-    // printf("The shop has %d of the product %s.\n", cokeStock.quantity, cokeStock.product.name);
-    // printf("The shop has %d of the product %s.\n", breadStock.quantity, breadStock.product.name);
-
-    
-    
-
-    // double price = findProductPrice(shop,"Coke Can");
-    // printf("%.2f\n", price);
-
-    //printf("The shop has %d of the product %s\n", cokeStock.quantity, cokeStock.product.name);
-
-*/
     printf("\n");
     return 0;
 }
