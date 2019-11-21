@@ -18,6 +18,10 @@ public class ProductStock {
 		return quantity;
 	}
 
+	public void reduceStock(int amt){
+		this.quantity -= amt;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductStock [product=" + product + ", quantity=" + quantity + "]";

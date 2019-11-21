@@ -46,6 +46,10 @@ public class Shop {
 		return cash;
 	}
 
+	public void increaseCash(double amt){
+		this.cash += amt;
+	}
+
 	public ArrayList<ProductStock> getStock() {
 		return stock;
 	}
