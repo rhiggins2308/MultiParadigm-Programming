@@ -33,9 +33,13 @@ public class Runner {
 				break;
 			case 1: 
 				System.out.println("You Selected 1");
-				// user account
-				//create Customer
+				Customer custAcc = new Customer("javaShop/customer.csv");
+				System.out.println(custAcc);
+				System.out.println();
+		
 				//process order
+				System.out.println("Thank you.\nYour order has not been processed today.\nPlease come back again soon.");
+				
 				break;
 			case 2: 
 				System.out.println("You Selected 2");
@@ -44,8 +48,7 @@ public class Runner {
 				System.out.println("\nYou have entered an invalid menu option. Please try again.\n");
 		}
 
-		
-//		Customer james = new Customer("src/javaShop/customer.csv");
+			
 //		System.out.println(james);
 //		shop.processOrder(james);
 	}
