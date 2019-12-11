@@ -1,48 +1,64 @@
-# # Assignment 2 - Challenge 10
-# # Verify the parentheses
-# # Given a string, return true if it is a nesting of zero or more pairs of parenthesis
-# # like \(())" or \((()))".
-# def count_chars(txt):
-# 	result = 0
-# 	for char in txt:
-# 		result += 1     # same as result = result + 1
-# 	return result
+def check(string, bracks):
+    # Base Case: where no elements/chars left in string
+    if not string:
+        # if no. open brackets matches no. close brackets
+        # string is balanced
+        if (bracks == 0):
+            return True
+        # if no. open brackets does not match no. close brackets
+        # string is not balanced
+        else:
+            return False   
+    # if first string element is (
+    elif (string[0] == "("):
+        # increment bracks and pass to recursive call
+        # with string minus first element
+        # continue recursion until Base Case reached
+        # i.e. empty string passed to recursive call
+        return check(string[1:], bracks+1)
+    # if first string element is )
+    elif (string[0] == ")"):
+        # decrement bracks and pass to recursive call
+        # with string minus first element
+        # continue recursion until Base Case reached
+        # i.e. empty string passed to recursive call
+        return check(string[1:], bracks-1)
+    # caters for any other char in the first string element
+    else:
+        # do not modify bracks and pass to recursive call
+        # with string minus first element
+        # continue recursion until Base Case reached
+        # i.e. empty string passed to recursive call
+        return check(string[1:], bracks)
 
-# def brackNest(s):
-#     if (count_chars(s) == 0):
-#         return True
-#     elif (count_chars(s) % 2 == 1):
-#         print('In Condition 2')
-#         print(count_chars(s))
-#         return False
-#     else:
-#         if (s[0] == '(' and s[count_chars(s)-1] == ')'):
-#             print('In Condition 3A')
-#             return brackNest(s[1:-1])
-#         else:
-#             print('In Condition 3B')
-#             return False
+# -----
+# test
+# -----
 
-# # b1 = []
-# # b2 = ['(']
-# # b3 = [')']
-# b4 = ['()']
-# # b5 = ['()(']
-# # b6 = ['())']
-b7 = "((((((((((()))))))))))"
-b8 = b7.split()
+bracks = 0
+string =""
+print("Test 1:", string, check(string, bracks))
 
-# # print(str(brackNest(b1)))
-# # print(str(brackNest(b2)))
-# # print(str(brackNest(b3)))
+string ="))"
+print("Test 2:", string, check(string, bracks))
 
-# print('Length: ', count_chars(b4))
-# print(str(brackNest(b4)))
-# # print(str(brackNest(b5)))
-# # print(str(brackNest(b6)))
-# # print(str(brackNest(b7)))
+string ="("
+print("Test 3:", string, check(string, bracks))
 
+string ="()"
+print("Test 4:", string, check(string, bracks))
 
-# for b in b8:
-#     print(b, '\n')
-print(b8[0])
+string ="())"
+print("Test 5:", string, check(string, bracks))
+
+string =")()(((())()))"
+print("Test 6:", string, check(string, bracks))
+
+string ="((((((((()))()))))))"
+print("Test 7:", string, check(string, bracks))
+
+string =")"
+print("Test 8:", string, check(string, bracks))
+print()
+print("Done ...")
+print("Noice!  Merry Christmas ....Time to GET SCHWIFTY!!")
